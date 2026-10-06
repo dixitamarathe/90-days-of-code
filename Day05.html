@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Day 5 - Flexbox Profile Card</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a2e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .profile-card {
+            background-color: #16213e;
+            color: #ffffff;
+            width: 300px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background-color: #0f3460;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 15px auto;
+            border: 3px solid #e94560;
+        }
+        h2 {
+            margin: 10px 0 5px 0;
+            font-size: 22px;
+        }
+        p {
+            color: #8d99ae;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .badge {
+            background-color: #e94560;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-card">
+        <div class="avatar">👩‍💻</div>
+        <h2>Dixita</h2>
+        <p>Frontend Developer in Progress | 90 Days of Code</p>
+        <span class="badge">Day 5 Completed</span>
+    </div>
+</body>
+</html>
