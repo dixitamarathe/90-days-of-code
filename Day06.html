@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 6-CSS Grid Gallary</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f0f2f5;
+            padding:  40px;
+            text-align: center;
+        }
+        
+        h1{
+            color: #1a1a2e;
+            margin-bottom: 30px;
+        }
+
+        /* Grid Container */
+        .grid-container{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        /* Grid Items */
+        .card{
+            background-color: #ffffff;
+            padding: 30px 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            font-weight: bold;
+            color: #333;
+            transition: transform 0.2s ease;
+        }
+        
+        .card:hover{
+            transform: translateY(-5px);
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Day 6: CSS Grid Practice</h1>
+
+    <div class="grid-container">
+        <div class="card">HTML5</div>
+        <div class="card">CSS3</div>
+        <div class="card">JavaScript</div>
+        <div class="card">Git & GitHub</div>
+        <div class="card">Flexbox</div>
+        <div class="card">CSS Grid</div>
+    </div>
+
+</body>
+</html>
