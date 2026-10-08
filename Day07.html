@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day7 - Responsive Navbar</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+
+        }
+
+        body{
+            background-color: #f4f6f9;
+        }
+
+        /* Desktop Layout */
+        .navbar{
+            background-color: #1a1a2e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+       }
+
+        .logo{
+            color: #00adb5;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .nav-links{
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .content{
+            padding: 40px;
+            text-align: center;
+        }
+
+        /* Mobile View (Media query) */
+        @media (max-width: 600px){
+            .navbar{
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links{
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+  </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Dikshita.dev</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h1>Day 7: Responsive Media Queries</h1>
+        <p>Resize your Browser window (or inspect mobile view) to see the Navbar adapt!</p>
+    </div>
+</body>
+</html>
