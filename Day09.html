@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 9- Dynamic Task List</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #0f172a;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .todo-card {
+            background-color: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            width: 320px;
+        }
+
+        h2{
+            margin-top: 0;
+            text-align: center;
+            color: #38bdf8;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        input{
+            flex: 1;
+            padding: 8px;
+            border-radius: 6px;
+            border:1px solid #475569;
+            background-color: #0f172a;
+            color: white;
+        }
+
+        button{
+            padding: 8px 14px;
+            background-color: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            opacity:0.9;
+
+        }
+
+        ul{
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        li{
+            margin-bottom: 8px;
+            color: #cbd5e1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="todo-card">
+        <h2>Day 9:Task List</h2>
+
+        <div class="input-group">
+            <input type="text" id="taskInput" placeholder="Enter a new task...">
+            <button id="addBtn">Add</button>
+        </div>
+
+        <ul id="taskList">
+            <!-- Tasks will appear here dynamically -->
+        </ul>
+    </div>
+    
+    <script>
+        // JavaScript Array & Logic
+        const tasks = ["Learn HTML", "Practice CSS", "Master JS Arrays"];
+
+        const taskInput = document.getElementById('taskInput');
+        const addBtn = document.getElementById('addBtn');
+        const taskList = document.getElementById('taskList');
+
+        //  Function to Render tasks on screen
+        function renderTasks() {
+             taskList.innerHTML = "";  //Clear existing List
+             for (let i = 0; i < tasks.length; i++) {
+                 const li = document.createElement('li');
+                 li.textContent = tasks[i];
+                 taskList.appendChild(li);
+             }
+        }
+
+        //Initial render
+        renderTasks();
+
+        // Add Button event listener
+        addBtn.addEventListener('click', () => {
+            const newTask = taskInput.value.trim();
+            if (newTask !== ""){
+                tasks.push(newTask); //Add to array
+                renderTasks();       //Refresh UI list
+                taskInput.value = ""; //Clear input field
+            }
+        });
+    </script>
+    
+</body>
+</html>
