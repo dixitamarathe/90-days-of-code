@@ -1,0 +1,124 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 10 - Live Search Filter</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f172a;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .search-card {
+            background-color: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            width: 320px;
+        }
+
+        h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #38bdf8;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 6px;
+            border: 1px solid #475569;
+            background-color: #0f172a;
+            color: white;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            padding: 10px;
+            background-color: #334155;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .no-result {
+            color: #94a3b8;
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="search-card">
+        <h2>Day 10: Live Filter</h2>
+        
+        <input type="text" id="searchInput" placeholder="Search topics (e.g., CSS, JS)...">
+
+        <ul id="itemList">
+            <!-- Filtered items will display here -->
+        </ul>
+    </div>
+
+    <script>
+        // Array of topics
+        const topics = [
+            "HTML Fundamentals",
+            "CSS Flexbox Layout",
+            "CSS Grid Systems",
+            "Responsive Web Design",
+            "JavaScript Variables",
+            "DOM Manipulation",
+            "JavaScript Arrays & Loops",
+            "Event Listeners & Functions"
+        ];
+
+        const searchInput = document.getElementById('searchInput');
+        const itemList = document.getElementById('itemList');
+
+        // Function to display items
+        function displayTopics(itemsToRender) {
+            itemList.innerHTML = ""; // Clear existing elements
+
+            if (itemsToRender.length === 0) {
+                itemList.innerHTML = `<li class="no-result">No matching topics found</li>`;
+                return;
+            }
+
+            itemsToRender.forEach(topic => {
+                const li = document.createElement('li');
+                li.textContent = topic;
+                itemList.appendChild(li);
+            });
+        }
+
+        // Initial Display
+        displayTopics(topics);
+
+        // Real-time Search Event Listener
+        searchInput.addEventListener('keyup', () => {
+            const query = searchInput.value.toLowerCase();
+            const filteredTopics = topics.filter(topic => 
+                topic.toLowerCase().includes(query)
+            );
+            displayTopics(filteredTopics);
+        });
+    </script>
+
+</body>
+</html>
