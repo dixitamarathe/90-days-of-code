@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 11 - Interactive Theme Toggle Card</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Dark mode class for body */
+        body.dark-mode {
+            background-color: #0f172a;
+        }
+
+        .card {
+            background-color: #ffffff;
+            color: #333333;
+            width: 300px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        /* Dark mode class for card */
+        body.dark-mode .card {
+            background-color: #1e293b;
+            color: #ffffff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        body.dark-mode p {
+            color: #94a3b8;
+        }
+
+        button {
+            padding: 10px 18px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Day 11 Project</h2>
+        <p>Click the button below to switch between Light and Dark mode dynamically using JavaScript.</p>
+        <button id="toggleBtn">Toggle Theme</button>
+    </div>
+
+    <script>
+        // Selecting elements
+        const toggleBtn = document.getElementById('toggleBtn');
+        const body = document.body;
+
+        // Event listener for theme toggle
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // Optional: Change button text based on mode
+            if (body.classList.contains('dark-mode')) {
+                toggleBtn.textContent = "Switch to Light Mode";
+            } else {
+                toggleBtn.textContent = "Switch to Dark Mode";
+            }
+        });
+    </script>
+
+</body>
+</html>
