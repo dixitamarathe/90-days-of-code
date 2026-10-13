@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 12 - JS Form Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f172a;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-card {
+            background-color: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            width: 300px;
+        }
+
+        h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #38bdf8;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #cbd5e1;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border-radius: 6px;
+            border: 1px solid #475569;
+            background-color: #0f172a;
+            color: white;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        #message {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-card">
+        <h2>Day 12: Validator</h2>
+        
+        <form id="signupForm">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Enter your name">
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div id="message"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('signupForm');
+        const username = document.getElementById('username');
+        const email = document.getElementById('email');
+        const message = document.getElementById('message');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Stop form from reloading the page
+
+            const userVal = username.value.trim();
+            const emailVal = email.value.trim();
+
+            if (userVal === "" || emailVal === "") {
+                message.textContent = "Please fill in all fields!";
+                message.style.color = "#ef4444"; // Red error color
+            } else {
+                message.textContent = "Form submitted successfully!";
+                message.style.color = "#22c55e"; // Green success color
+            }
+        });
+    </script>
+
+</body>
+</html>
