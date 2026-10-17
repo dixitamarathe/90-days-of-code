@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 16 - Live Text Display</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .badge {
+            display: inline-block;
+            background: #eeeaff;
+            color: #6c4bd4;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            color: #25223b;
+            font-size: 27px;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e2e2ef;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+            margin-bottom: 15px;
+        }
+
+        input:focus {
+            border-color: #7655d9;
+            box-shadow: 0 0 0 3px #7655d920;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #7655d9, #5741bd);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 15px #7655d940;
+        }
+
+        .output-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f7f5ff;
+            border: 1px dashed #b8a8f3;
+            border-radius: 12px;
+            min-height: 100px;
+            overflow-wrap: anywhere;
+        }
+
+        .output-label {
+            color: #7655d9;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        #outputDisplay {
+            color: #302653;
+            font-size: 19px;
+            line-height: 1.5;
+        }
+
+        .footer {
+            margin-top: 22px;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <span class="badge">DAY 16 CHALLENGE</span>
+
+        <h1>Live Text Display ✨</h1>
+
+        <p class="description">
+            Type something below and click the button
+            to display your message!
+        </p>
+
+        <input
+            type="text"
+            id="userInput"
+            placeholder="Enter your message..."
+        >
+
+        <button id="showBtn">Show Text</button>
+
+        <div class="output-box">
+            <p class="output-label">Your Message</p>
+            <h2 id="outputDisplay">Your text will appear here...</h2>
+        </div>
+
+        <p class="footer">Built with HTML, CSS & JavaScript 💜</p>
+    </div>
+
+    <script>
+        // Step 1: Select HTML elements
+        const userInput = document.getElementById("userInput");
+        const showBtn = document.getElementById("showBtn");
+        const outputDisplay = document.getElementById("outputDisplay");
+
+        // Step 2: Listen for button clicks
+        showBtn.addEventListener("click", function () {
+
+            // Step 3: Get the input value
+            const message = userInput.value.trim();
+
+            // Step 4: Display the message
+            if (message !== "") {
+                outputDisplay.textContent = message;
+            } else {
+                outputDisplay.textContent = "Please enter some text!";
+            }
+
+        });
+    </script>
+
+</body>
+</html>
