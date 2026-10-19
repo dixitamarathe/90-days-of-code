@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 18 | Array Transformer</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      font-family: "Segoe UI", sans-serif;
+      color: #f8fafc;
+      background:
+        radial-gradient(circle at 85% 10%, #164e63, transparent 35%),
+        linear-gradient(135deg, #0f172a, #111827);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 650px;
+      padding: 34px;
+      border: 1px solid #334155;
+      border-radius: 24px;
+      background: rgba(30, 41, 59, 0.88);
+      box-shadow: 0 25px 60px #00000045;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 30px;
+      margin-bottom: 18px;
+      color: #a5f3fc;
+      background: #164e63;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      margin-bottom: 12px;
+      font-size: 30px;
+    }
+
+    .description {
+      margin-bottom: 28px;
+      color: #cbd5e1;
+      line-height: 1.7;
+    }
+
+    .arrays {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .array-card {
+      min-width: 0;
+      padding: 20px;
+      border: 1px solid #475569;
+      border-radius: 18px;
+      background: #0f172a;
+    }
+
+    .array-card h2 {
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .array-card p {
+      margin-bottom: 18px;
+      color: #94a3b8;
+      font-size: 12px;
+    }
+
+    .number-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .number {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .original .number {
+      color: #cbd5e1;
+      background: #334155;
+    }
+
+    .transformed .number {
+      color: #a5f3fc;
+      background: #164e63;
+      border: 1px solid #0891b2;
+      animation: appear 0.3s ease both;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      color: #082f49;
+      background: linear-gradient(135deg, #67e8f9, #22d3ee);
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px #06b6d455;
+    }
+
+    .info {
+      margin-top: 20px;
+      padding: 16px;
+      border-left: 3px solid #22d3ee;
+      border-radius: 8px;
+      color: #cbd5e1;
+      background: #164e632e;
+      font-size: 13px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    .footer {
+      margin-top: 24px;
+      color: #64748b;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 22px;
+      }
+
+      .arrays {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <span class="tag">DAY 18 • JAVASCRIPT</span>
+
+    <h1>Array Transformer ⚡</h1>
+
+    <p class="description">
+      Watch how JavaScript transforms every number
+      using <strong>map()</strong> and processes each item
+      using <strong>forEach()</strong>.
+    </p>
+
+    <section class="arrays">
+      <article class="array-card original">
+        <h2>Original Array</h2>
+        <p>Before transformation</p>
+        <div class="number-list" id="originalList"></div>
+      </article>
+
+      <article class="array-card transformed">
+        <h2>New Array</h2>
+        <p>Each number × 2</p>
+        <div class="number-list" id="resultList"></div>
+      </article>
+    </section>
+
+    <button id="transformBtn" type="button">
+      Transform Array →
+    </button>
+
+    <div class="info" id="status" aria-live="polite">
+      Click the button to transform your array.
+    </div>
+
+    <div class="footer">
+      75-Day Coding Challenge · Day 18
+    </div>
+  </main>
+
+  <script>
+    // Step 1: Create the original array.
+    const numbers = [1, 2, 3, 4];
+
+    const originalList = document.getElementById("originalList");
+    const resultList = document.getElementById("resultList");
+    const transformBtn = document.getElementById("transformBtn");
+    const status = document.getElementById("status");
+
+    // Display numbers as individual visual cards.
+    function renderNumbers(container, array) {
+      container.replaceChildren();
+
+      array.forEach(function (number) {
+        const card = document.createElement("span");
+        card.className = "number";
+        card.textContent = number;
+        container.appendChild(card);
+      });
+    }
+
+    // Display the original array when the page loads.
+    renderNumbers(originalList, numbers);
+
+    // Step 2: Transform the array when the button is clicked.
+    transformBtn.addEventListener("click", function () {
+      // map() creates a NEW array.
+      const doubledNumbers = numbers.map(function (number) {
+        return number * 2;
+      });
+
+      // Display the transformed array.
+      renderNumbers(resultList, doubledNumbers);
+
+      // forEach() processes every item in the new array.
+      console.log("Original Array:", numbers);
+      console.log("Transformed Array:", doubledNumbers);
+      console.log("Individual transformed numbers:");
+
+      doubledNumbers.forEach(function (number) {
+        console.log(number);
+      });
+
+      status.textContent =
+        `Success! [${numbers.join(", ")}] → ` +
+        `[${doubledNumbers.join(", ")}]. Check the console too.`;
+    });
+  </script>
+</body>
+</html>
