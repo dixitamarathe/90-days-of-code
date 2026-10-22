@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 22 - Live Search Filter</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #0f172a; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background-color: #1e293b; padding: 30px; border-radius: 12px; width: 320px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+        input { width: 100%; padding: 8px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #475569; background-color: #0f172a; color: white; box-sizing: border-box; }
+        ul { padding-left: 0; list-style: none; }
+        li { background-color: #334155; padding: 8px 12px; margin-bottom: 6px; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Day 22: Search Filter</h2>
+        <input type="text" id="searchInput" placeholder="Search tech items...">
+        <ul id="itemList">
+            <li>JavaScript</li>
+            <li>HTML & CSS</li>
+            <li>React JS</li>
+            <li>Node.js</li>
+            <li>Python</li>
+        </ul>
+    </div>
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const items = document.querySelectorAll('#itemList li');
+
+        searchInput.addEventListener('input', (e) => {
+            const searchText = e.target.value.toLowerCase();
+
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchText)) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
