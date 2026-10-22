@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 21 - Persistent Counter App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f172a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background-color: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        h1 {
+            font-size: 48px;
+            color: #38bdf8;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 18px;
+            margin: 5px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            color: white;
+        }
+        .inc { background-color: #22c55e; }
+        .dec { background-color: #ef4444; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Day 21: Persistent Counter</h2>
+        <h1 id="count">0</h1>
+        <div>
+            <button class="dec" id="decBtn">- Decrease</button>
+            <button class="inc" id="incBtn">+ Increase</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. Load saved count from localStorage, or default to 0
+        let count = parseInt(localStorage.getItem('savedCount')) || 0;
+
+        const countDisplay = document.getElementById('count');
+        const incBtn = document.getElementById('incBtn');
+        const decBtn = document.getElementById('decBtn');
+
+        // Display initial count
+        countDisplay.textContent = count;
+
+        function updateAndSave() {
+            countDisplay.textContent = count;
+            localStorage.setItem('savedCount', count); // Save to browser storage
+        }
+
+        incBtn.addEventListener('click', () => {
+            count++;
+            updateAndSave();
+        });
+
+        decBtn.addEventListener('click', () => {
+            count--;
+            updateAndSave();
+        });
+    </script>
+
+</body>
+</html>
